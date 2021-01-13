@@ -46,7 +46,7 @@ const UserService = {
     return db.transaction(async (trx) => {
       const [languageId] = await trx
         .into("language")
-        .insert([{ name: "German", user_id }], ["id"]);
+        .insert([{ name: "Spanish", user_id }], ["id"]);
 
       // when inserting words,
       // we need to know the current sequence number
@@ -54,14 +54,14 @@ const UserService = {
       const seq = await db.from("word_id_seq").select("last_value").first();
 
       const languageWords = [
-        ["traurig", "sad", 2],
-        ["hallo", "hello", 3],
-        ["morgen", "tomorrow", 4],
-        ["schon", "beautiful", 5],
-        ["nett", "nice", 6],
-        ["komisch", "funny", 7],
-        ["lachen", "laugh", 8],
-        ["hassen", "hate", null],
+        ["Hola", "hello", 2],
+        ["Adiós", "goodbye", 3],
+        ["Por favor", "please", 4],
+        ["Gracias", "thank you", 5],
+        ["Lo siento", "sorry", 6],
+        ["Salud", "bless you", 7],
+        ["Felicidad", "happiness", 8],
+        ["Amor", "love", null],
       ];
 
       const [languageHeadId] = await trx.into("word").insert(
